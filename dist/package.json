@@ -1,6 +1,6 @@
 {
   "name": "buildmotion-foundation",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "An Angular custom module that contains foundation elements for buildmotion Angular applications. Basically, the framework for buildmotion NG.",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://build-hybridmobileapp-net.visualstudio.com/_git/BuildMotion.Commerce"
+    "url": "https://github.com/buildmotion/buildmotion-foundation"
   },
   "keywords": [
     "buildmotion",
@@ -23,8 +23,8 @@
     "angular-rules-engine": "^0.0.27",
     "@angular/http": "^2.3.1",
     "@angular/router": "^3.3.1",
-    "buildmotion-alert": "^1.0.0",
-    "buildmotion-logging": "^1.0.1"
+    "buildmotion-alert": "^1.0.1",
+    "buildmotion-logging": "^1.0.4"
   },
   "devDependencies": {
     "@angular/cli": "^1.4.2",
@@ -36,7 +36,7 @@
     "@angular/router": "^3.3.1",
     "angular-rules-engine": "^0.0.27",
     "rxjs": "5.0.0-beta.12",
-    "buildmotion-alert": "^1.0.0",
-    "buildmotion-logging": "^1.0.2"
+    "buildmotion-alert": "^1.0.1",
+    "buildmotion-logging": "^1.0.4"
   }
 }
