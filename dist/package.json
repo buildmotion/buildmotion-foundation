@@ -1,0 +1,42 @@
+{
+  "name": "buildmotion-foundation",
+  "version": "1.0.1",
+  "description": "An Angular custom module that contains foundation elements for buildmotion Angular applications. Basically, the framework for buildmotion NG.",
+  "main": "index.js",
+  "scripts": {
+    "transpile": "ngc",
+    "build": "npm run transpile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://build-hybridmobileapp-net.visualstudio.com/_git/BuildMotion.Commerce"
+  },
+  "keywords": [
+    "buildmotion",
+    "Angular",
+    "framework",
+    "stooges"
+  ],
+  "author": "matt.vaughn@buildmotion.com www.buildmotion.com",
+  "license": "MIT",
+  "dependencies": {
+    "angular-rules-engine": "^0.0.27",
+    "@angular/http": "^2.3.1",
+    "@angular/router": "^3.3.1",
+    "buildmotion-alert": "^1.0.0",
+    "buildmotion-logging": "^1.0.1"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.4.2",
+    "@angular/common": "^4.4.3",
+    "@angular/compiler": "^4.4.3",
+    "@angular/compiler-cli": "^4.4.3",
+    "@angular/core": "^4.4.3",
+    "@angular/http": "^2.3.1",
+    "@angular/router": "^3.3.1",
+    "angular-rules-engine": "^0.0.27",
+    "rxjs": "5.0.0-beta.12",
+    "buildmotion-alert": "^1.0.0",
+    "buildmotion-logging": "^1.0.2"
+  }
+}

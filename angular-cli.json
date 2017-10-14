@@ -1,0 +1,19 @@
+{
+    "project": {
+        "version": "1.0.0",
+        "name": "buildmotionFoundationModule"
+    },
+    "apps": [
+        {
+            "tsconfig": "tsconfig.json",
+            "mobile": false,
+            "root": "src",
+            "prefix": "buildmotion"
+        }
+    ],
+    "defaults": {
+        "styleExt": "css",
+        "prefixInterfaces": false,
+        "lazyRoutePrefix": "+"
+    }
+}

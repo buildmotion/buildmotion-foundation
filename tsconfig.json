@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "declaration": true,
+        "experimentalDecorators": true,
+        "inlineSources": true,
+        "lib": [
+            "es2015",
+            "dom"
+        ],
+        "module": "es2015",
+        "moduleResolution": "node",
+        "noImplicitAny": false,
+        "outDir": "dist",
+        "paths": {
+            "@angular/core": ["node_modules/@angular/core/*"],
+            "@angular/http": ["node_modules/@angular/http/*"],
+            "@angular/router": ["node_modules/@angular/router/*"],
+            "rxjs/*": ["node_modules/rxjs/*"],
+            "rxjs/add/operator/cache": [ "node_modules/rxjs/add/operator/cache/*" ],
+            /* import 'rxjs/add/operator/cache';*/
+            "buildmotion-alert": ["node_modules/buildmotion-alert/*"],
+            "buildmotion-logging": ["node_modules/buildmotion-logging/*"]
+        },
+        "rootDir": "src/app",
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "strictNullChecks": true,
+        "stripInternal": true,
+        "target": "es5"
+    },
+    "files": [
+        "./src/app/index.ts"
+    ],
+    "angularCompilerOptions": {
+        "strictMetadataEmit": true,
+        "genDir": "aot-dist"
+    }
+}
