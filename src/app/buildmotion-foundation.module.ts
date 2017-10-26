@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BuildMotionAlertModule } from 'buildmotion-alert';
-import { BuildmotionLoggingModule } from 'buildmotion-logging';
+import { BuildMotionLoggingModule } from 'buildmotion-logging';
 
 @NgModule({
   imports: [
     CommonModule,
     BuildMotionAlertModule,
-    BuildmotionLoggingModule
+    BuildMotionLoggingModule
   ],
   declarations: []
 })
-export class BuildmotionFoundationModule { }
+export class BuildMotionFoundationModule { }

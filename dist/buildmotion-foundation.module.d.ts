@@ -1,2 +1,2 @@
-export declare class BuildmotionFoundationModule {
+export declare class BuildMotionFoundationModule {
 }

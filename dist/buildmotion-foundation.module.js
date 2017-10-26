@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BuildMotionAlertModule } from 'buildmotion-alert';
-import { BuildmotionLoggingModule } from 'buildmotion-logging';
-var BuildmotionFoundationModule = /** @class */ (function () {
-    function BuildmotionFoundationModule() {
+import { BuildMotionLoggingModule } from 'buildmotion-logging';
+var BuildMotionFoundationModule = /** @class */ (function () {
+    function BuildMotionFoundationModule() {
     }
-    BuildmotionFoundationModule.decorators = [
+    BuildMotionFoundationModule.decorators = [
         { type: NgModule, args: [{
                     imports: [
                         CommonModule,
                         BuildMotionAlertModule,
-                        BuildmotionLoggingModule
+                        BuildMotionLoggingModule
                     ],
                     declarations: []
                 },] },
     ];
     /** @nocollapse */
-    BuildmotionFoundationModule.ctorParameters = function () { return []; };
-    return BuildmotionFoundationModule;
+    BuildMotionFoundationModule.ctorParameters = function () { return []; };
+    return BuildMotionFoundationModule;
 }());
-export { BuildmotionFoundationModule };
+export { BuildMotionFoundationModule };
 //# sourceMappingURL=buildmotion-foundation.module.js.map
