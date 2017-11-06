@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
-        "declaration": true,
+        "declaration": true, /* generate type definition files; */
         "experimentalDecorators": true,
         "inlineSources": true,
         "lib": [
@@ -10,7 +10,7 @@
         ],
         "module": "es2015",
         "moduleResolution": "node",
-        "noImplicitAny": false,
+        "noImplicitAny": false, /* true to support Angular 4.0 */
         "outDir": "dist",
         "paths": {
             "@angular/core": ["node_modules/@angular/core/*"],
@@ -18,14 +18,13 @@
             "@angular/router": ["node_modules/@angular/router/*"],
             "rxjs/*": ["node_modules/rxjs/*"],
             "rxjs/add/operator/cache": [ "node_modules/rxjs/add/operator/cache/*" ],
-            /* import 'rxjs/add/operator/cache';*/
             "buildmotion-alert": ["node_modules/buildmotion-alert/*"],
             "buildmotion-logging": ["node_modules/buildmotion-logging/*"]
         },
-        "rootDir": "src/app",
+        "rootDir": "src/app", /* pointing to [src/app] to allow for angular-cli */
         "skipLibCheck": true,
         "sourceMap": true,
-        "strictNullChecks": true,
+        "strictNullChecks": true, /* support for Angular 4.1 */
         "stripInternal": true,
         "target": "es5"
     },
