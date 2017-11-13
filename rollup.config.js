@@ -6,9 +6,11 @@ export default {
 	moduleName: 'buildmotion-foundation',
 	globals: {
 		'@angular/core': 'ng.core',
+		'@angular/common': 'ng.common',
 		'@angular/http': 'ng.http',
 		'@angular/router': 'ng.router',
 		'rxjs/Observable': 'Rx',
-		'rxjs/add/operator/cache': 'Rx.Observable.prototype'
+		'angular-rules-engine': 'angularRulesEngine',
+		'angular-rules-engine/validation/ValidationContext': 'angularRulesEngine.validation.prototype'
 	}
 }

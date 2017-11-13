@@ -1,26 +1,28 @@
+import { RequestOptions, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/Rx';
+import { LoggingService } from 'buildmotion-logging/logging.service';
 import { MessageType } from 'angular-rules-engine/service/index';
 import { ServiceContext } from 'angular-rules-engine/service/index';
 import { ServiceMessage } from 'angular-rules-engine/service/index';
 import { Severity } from 'buildmotion-logging/severity.enum';
 import { ErrorResponse } from './models/error-response.model';
+import { ServiceError } from './models/service-error.model';
 /**
  * Use this class as a base for application [services]. Add and/or implement
  * common behavior. For example, this base service class will
  * always initialize a new [ServiceContext] for the specified service
  * instance.
  */
-var ServiceBase = /** @class */ (function () {
+var /**
+ * Use this class as a base for application [services]. Add and/or implement
+ * common behavior. For example, this base service class will
+ * always initialize a new [ServiceContext] for the specified service
+ * instance.
+ */
+ServiceBase = /** @class */ (function () {
     function ServiceBase(loggingService) {
         this.loggingService = loggingService;
-        this.serviceInitDateTime = new Date();
-        /**
-         * Use this public property to set/retrieve the user's
-         * security token. Most of the web api calls will require an
-         * authorization token for the authenticated user.
-         */
-        this.accessToken = '';
-        this.serviceContext = new ServiceContext();
     }
     ServiceBase.prototype.extractData = function (res) {
         var body = res.json();
@@ -42,7 +44,13 @@ var ServiceBase = /** @class */ (function () {
     /**
         * Use to handle HTTP errors when calling web api(s).
         */
-    ServiceBase.prototype.handleHttpError = function (error, requestOptions) {
+    /**
+            * Use to handle HTTP errors when calling web api(s).
+            */
+    ServiceBase.prototype.handleHttpError = /**
+            * Use to handle HTTP errors when calling web api(s).
+            */
+    function (error, requestOptions) {
         var message = error.toString() + " " + requestOptions.url + ", " + JSON.stringify(requestOptions.body);
         this.loggingService.log(this.serviceName, Severity.Error, message);
         if (error && error._body) {
@@ -94,5 +102,11 @@ var ServiceBase = /** @class */ (function () {
     };
     return ServiceBase;
 }());
+/**
+ * Use this class as a base for application [services]. Add and/or implement
+ * common behavior. For example, this base service class will
+ * always initialize a new [ServiceContext] for the specified service
+ * instance.
+ */
 export { ServiceBase };
 //# sourceMappingURL=service-base.service.js.map

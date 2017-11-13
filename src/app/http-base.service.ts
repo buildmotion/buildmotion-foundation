@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Request, RequestMethod, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import  'rxjs/add/operator/cache';
 import { BehaviorSubject } from 'rxjs/Rx';
 
 import { Severity } from 'buildmotion-logging/severity.enum';
@@ -84,8 +85,8 @@ export class HttpBaseService {
         this.loggingService.log(this.serviceName, Severity.Information, `Preparing to execute HTTP request. Url: ${requestOptions.url}, Method: ${requestOptions.method}`);
         return this.http.request(new Request(requestOptions))
             .map(response => response.json()) // maps the observable response to a JSON object;
-            .catch(error => this.handleHttpError(error, requestOptions)) // use to handle any exception during service call;
-            .cache(); // use [cache] to eliminate possibility of duplicate calls;
+            .catch(error => this.handleHttpError(error, requestOptions)); // use to handle any exception during service call;
+            //.cache(); // use [cache] to eliminate possibility of duplicate calls;
     }
 
     /**

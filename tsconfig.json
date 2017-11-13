@@ -17,7 +17,6 @@
             "@angular/http": ["node_modules/@angular/http/*"],
             "@angular/router": ["node_modules/@angular/router/*"],
             "rxjs/*": ["node_modules/rxjs/*"],
-            "rxjs/add/operator/cache": [ "node_modules/rxjs/add/operator/cache/*" ],
             "buildmotion-alert": ["node_modules/buildmotion-alert/*"],
             "buildmotion-logging": ["node_modules/buildmotion-logging/*"]
         },

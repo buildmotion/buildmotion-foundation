@@ -1,13 +1,10 @@
 {
   "name": "buildmotion-foundation",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "An Angular custom module that contains foundation elements for buildmotion Angular applications. Basically, the framework for buildmotion NG.",
-  "main": "index.js",
-  "module": "",
-  "scripts": {
-    "transpile": "ngc",
-    "build": "npm run transpile"
-  },
+  "main": "bundles/buildmotion-foundation.umd.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/buildmotion/buildmotion-foundation"
@@ -16,16 +13,27 @@
     "buildmotion",
     "Angular",
     "framework",
-    "stooges"
+    "business actions",
+    "build motion framework",
+    "Matt Vaughn",
+    "rule engine",
+    "typescript rule engine",
+    "angular rule engine",
+    "rules",
+    "build motion"
   ],
   "author": "matt.vaughn@buildmotion.com www.buildmotion.com",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/buildmotion/buildmotion-foundation/issues"
+  },
+  "homepage": "https://github.com/buildmotion/buildmotion-foundation#readme",
   "peerDependencies": {
     "@angular/core": "^4.3.1",
     "@angular/http": "^4.3.1",
     "@angular/router": "^4.3.1",
     "rxjs": "^5.1.0",
-    "angular-rules-engine": "^0.0.27",
+    "angular-rules-engine": "^2.0.3",
     "buildmotion-alert": "^1.0.2",
     "buildmotion-logging": "^1.0.5"
   }

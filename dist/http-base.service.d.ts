@@ -1,5 +1,6 @@
 import { Headers, Http, RequestMethod, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/cache';
 import { LoggingService } from 'buildmotion-logging/logging.service';
 import { ErrorResponse } from './models/error-response.model';
 /**
@@ -38,7 +39,7 @@ export declare class HttpBaseService {
      * Use to execute an HTTP request using the specified header and URL.
      * See Request: https://angular.io/docs/ts/latest/api/http/index/Request-class.html
      */
-    executeRequest(requestOptions: RequestOptions): Observable<Response>;
+    executeRequest(requestOptions: RequestOptions): Observable<any>;
     /**
      * Use to handle HTTP errors when calling web api(s).
      */

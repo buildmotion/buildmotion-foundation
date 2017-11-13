@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
 
-import { Action } from 'angular-rules-engine/action/index';
+import { Action } from 'angular-actions/action/Action';
 import { ValidationContext } from 'angular-rules-engine/validation/ValidationContext';
 import { ServiceMessage } from 'angular-rules-engine/service/index';
 import { MessageType } from 'angular-rules-engine/service/index';
 import { ServiceContext } from 'angular-rules-engine/service/index';
-import { ActionResult } from 'angular-rules-engine/action/index';
+import { ActionResult } from 'angular-actions/action/ActionResult';
 import { CompositeRule } from 'angular-rules-engine/rules/index';
 import { RuleResult } from 'angular-rules-engine/rules/index';
 

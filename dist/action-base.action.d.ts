@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs/Observable';
-import { Action } from 'angular-rules-engine/action/index';
+import { Action } from 'angular-actions/action/Action';
 import { ValidationContext } from 'angular-rules-engine/validation/ValidationContext';
 import { ServiceContext } from 'angular-rules-engine/service/index';
-import { ActionResult } from 'angular-rules-engine/action/index';
+import { ActionResult } from 'angular-actions/action/ActionResult';
 import { RuleResult } from 'angular-rules-engine/rules/index';
 import { LoggingService } from 'buildmotion-logging/logging.service';
 import { HttpBaseService } from './http-base.service';

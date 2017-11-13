@@ -1,3 +1,5 @@
+import { LoggingService } from 'buildmotion-logging/logging.service';
+import { ServiceContext } from 'angular-rules-engine/service/index';
 import { ServiceMessage } from 'angular-rules-engine/service/index';
 import { MessageType } from 'angular-rules-engine/service/index';
 import { Severity } from 'buildmotion-logging/severity.enum';
@@ -6,7 +8,12 @@ import { Severity } from 'buildmotion-logging/severity.enum';
  *
  * serviceContext: This is initialized for each instance of a business provider - its purpose is to collect information during the processing of business logic.
  */
-var BusinessProviderBase = /** @class */ (function () {
+var /**
+ * Use the business provider base class to access common elements of the business provider.
+ *
+ * serviceContext: This is initialized for each instance of a business provider - its purpose is to collect information during the processing of business logic.
+ */
+BusinessProviderBase = /** @class */ (function () {
     function BusinessProviderBase(loggingService) {
         this.loggingService = loggingService;
         this.loggingService.log(this.serviceName, Severity.Information, "Running constructor for the [BusinessProviderBase].");
@@ -35,5 +42,10 @@ var BusinessProviderBase = /** @class */ (function () {
     };
     return BusinessProviderBase;
 }());
+/**
+ * Use the business provider base class to access common elements of the business provider.
+ *
+ * serviceContext: This is initialized for each instance of a business provider - its purpose is to collect information during the processing of business logic.
+ */
 export { BusinessProviderBase };
 //# sourceMappingURL=business-provider-base.service.js.map
