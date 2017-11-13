@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('buildmotion-alert'), require('buildmotion-logging'), require('rxjs/Observable'), require('@angular/http'), require('angular-actions/action/Action'), require('angular-rules-engine/validation/ValidationContext'), require('angular-rules-engine/service/index'), require('angular-actions/action/ActionResult'), require('angular-rules-engine/rules/index'), require('buildmotion-logging/logging.service'), require('buildmotion-logging/severity.enum'), require('rxjs/add/operator/cache'), require('rxjs/Rx')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common', 'buildmotion-alert', 'buildmotion-logging', 'rxjs/Observable', '@angular/http', 'angular-actions/action/Action', 'angular-rules-engine/validation/ValidationContext', 'angular-rules-engine/service/index', 'angular-actions/action/ActionResult', 'angular-rules-engine/rules/index', 'buildmotion-logging/logging.service', 'buildmotion-logging/severity.enum', 'rxjs/add/operator/cache', 'rxjs/Rx'], factory) :
-	(factory((global['buildmotion-foundation'] = {}),global.ng.core,global.ng.common,global.buildmotionAlert,global.buildmotionLogging,global.Rx,global.ng.http,global.Action,global.angularRulesEngine.validation.prototype,global.index,global.ActionResult,global.index$1,global.logging_service,global.severity_enum,null,global.Rx));
-}(this, (function (exports,core,common,buildmotionAlert,buildmotionLogging,Observable,http,Action,ValidationContext,index,ActionResult,index$1,logging_service,severity_enum,cache,Rx) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('buildmotion-alert'), require('buildmotion-logging'), require('rxjs/Observable'), require('@angular/http'), require('angular-actions/action/Action'), require('angular-rules-engine/validation/ValidationContext'), require('angular-rules-engine/service/index'), require('angular-actions/action/ActionResult'), require('angular-rules-engine/rules/CompositeRule'), require('angular-rules-engine/rules/RuleResult'), require('buildmotion-logging/logging.service'), require('buildmotion-logging/severity.enum'), require('rxjs/add/operator/cache'), require('rxjs/Rx')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common', 'buildmotion-alert', 'buildmotion-logging', 'rxjs/Observable', '@angular/http', 'angular-actions/action/Action', 'angular-rules-engine/validation/ValidationContext', 'angular-rules-engine/service/index', 'angular-actions/action/ActionResult', 'angular-rules-engine/rules/CompositeRule', 'angular-rules-engine/rules/RuleResult', 'buildmotion-logging/logging.service', 'buildmotion-logging/severity.enum', 'rxjs/add/operator/cache', 'rxjs/Rx'], factory) :
+	(factory((global['buildmotion-foundation'] = {}),global.ng.core,global.ng.common,global.buildmotionAlert,global.buildmotionLogging,global.Rx,global.ng.http,global.Action,global.angularRulesEngine.validation.prototype,global.index,global.ActionResult,global.CompositeRule,global.RuleResult,global.logging_service,global.severity_enum,null,global.Rx));
+}(this, (function (exports,core,common,buildmotionAlert,buildmotionLogging,Observable,http,Action,ValidationContext,index,ActionResult,CompositeRule,RuleResult,logging_service,severity_enum,cache,Rx) { 'use strict';
 
 var BuildMotionFoundationModule = /** @class */ (function () {
     function BuildMotionFoundationModule() {
@@ -301,13 +301,13 @@ var ActionBase = /** @class */ (function (_super) {
          */
     function (ruleResult) {
         var _this = this;
-        if (ruleResult.rulePolicy instanceof index$1.CompositeRule) {
+        if (ruleResult.rulePolicy instanceof CompositeRule.CompositeRule) {
             var composite = ruleResult.rulePolicy;
             if (composite && composite.hasErrors) {
                 var errors = composite.results.filter(function (result) { return !result.isValid && result.rulePolicy.isDisplayable; });
                 errors.forEach(function (errorResult) {
                     _this.publishRuleResult(errorResult);
-                    if (errorResult.rulePolicy instanceof index$1.CompositeRule) {
+                    if (errorResult.rulePolicy instanceof CompositeRule.CompositeRule) {
                         _this.retrieveRuleDetails(errorResult);
                     }
                 });

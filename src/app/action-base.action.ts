@@ -7,8 +7,8 @@ import { ServiceMessage } from 'angular-rules-engine/service/index';
 import { MessageType } from 'angular-rules-engine/service/index';
 import { ServiceContext } from 'angular-rules-engine/service/index';
 import { ActionResult } from 'angular-actions/action/ActionResult';
-import { CompositeRule } from 'angular-rules-engine/rules/index';
-import { RuleResult } from 'angular-rules-engine/rules/index';
+import { CompositeRule } from 'angular-rules-engine/rules/CompositeRule';
+import { RuleResult } from 'angular-rules-engine/rules/RuleResult';
 
 import { LoggingService } from 'buildmotion-logging/logging.service';
 import { Severity } from 'buildmotion-logging/severity.enum';

@@ -22,7 +22,11 @@
     "rules",
     "build motion"
   ],
-  "author": "matt.vaughn@buildmotion.com www.buildmotion.com",
+  "author": {
+    "name": "Matt Vaughn",
+    "email": "matt.vaughn@buildmotion.com",
+    "url": "http://www.buildmotion.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/buildmotion/buildmotion-foundation/issues"

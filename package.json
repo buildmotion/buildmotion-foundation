@@ -18,7 +18,11 @@
     "framework",
     "stooges"
   ],
-  "author": "matt.vaughn@buildmotion.com www.buildmotion.com",
+  "author": {
+    "name": "Matt Vaughn",
+    "email": "matt.vaughn@buildmotion.com",
+    "url": "http://www.buildmotion.com"
+  },
   "license": "MIT",
   "dependencies": {
     "angular-actions": "^1.0.4",
@@ -34,7 +38,7 @@
     "@angular/http": "^5.0.1",
     "@angular/router": "^5.0.1",
     "angular-actions": "^1.0.4",
-    "angular-rules-engine": "^2.0.5 ",
+    "angular-rules-engine": "^2.0.6",
     "buildmotion-alert": "^1.0.2",
     "buildmotion-logging": "^1.0.5",
     "rollup": "^0.50.0",
