@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('buildmotion-alert'), require('buildmotion-logging'), require('rxjs/Observable'), require('@angular/http'), require('angular-actions/action/Action'), require('angular-rules-engine/validation/ValidationContext'), require('angular-rules-engine/service/index'), require('angular-actions/action/ActionResult'), require('angular-rules-engine/rules/CompositeRule'), require('angular-rules-engine/rules/RuleResult'), require('buildmotion-logging/logging.service'), require('buildmotion-logging/severity.enum'), require('rxjs/add/operator/cache'), require('rxjs/Rx')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common', 'buildmotion-alert', 'buildmotion-logging', 'rxjs/Observable', '@angular/http', 'angular-actions/action/Action', 'angular-rules-engine/validation/ValidationContext', 'angular-rules-engine/service/index', 'angular-actions/action/ActionResult', 'angular-rules-engine/rules/CompositeRule', 'angular-rules-engine/rules/RuleResult', 'buildmotion-logging/logging.service', 'buildmotion-logging/severity.enum', 'rxjs/add/operator/cache', 'rxjs/Rx'], factory) :
-	(factory((global['buildmotion-foundation'] = {}),global.ng.core,global.ng.common,global.buildmotionAlert,global.buildmotionLogging,global.Rx,global.ng.http,global.Action,global.angularRulesEngine.validation.prototype,global.index,global.ActionResult,global.CompositeRule,global.RuleResult,global.logging_service,global.severity_enum,null,global.Rx));
-}(this, (function (exports,core,common,buildmotionAlert,buildmotionLogging,Observable,http,Action,ValidationContext,index,ActionResult,CompositeRule,RuleResult,logging_service,severity_enum,cache,Rx) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('buildmotion-logging'), require('rxjs/Observable'), require('@angular/http'), require('angular-actions/action/Action'), require('angular-rules-engine/validation/ValidationContext'), require('angular-rules-engine/service/ServiceMessage'), require('angular-rules-engine/service/MessageType'), require('angular-rules-engine/service/ServiceContext'), require('angular-actions/action/ActionResult'), require('angular-rules-engine/rules/CompositeRule'), require('angular-rules-engine/rules/RuleResult'), require('buildmotion-logging/logging.service'), require('buildmotion-logging/severity.enum'), require('rxjs/add/operator/cache'), require('rxjs/Rx')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common', 'buildmotion-logging', 'rxjs/Observable', '@angular/http', 'angular-actions/action/Action', 'angular-rules-engine/validation/ValidationContext', 'angular-rules-engine/service/ServiceMessage', 'angular-rules-engine/service/MessageType', 'angular-rules-engine/service/ServiceContext', 'angular-actions/action/ActionResult', 'angular-rules-engine/rules/CompositeRule', 'angular-rules-engine/rules/RuleResult', 'buildmotion-logging/logging.service', 'buildmotion-logging/severity.enum', 'rxjs/add/operator/cache', 'rxjs/Rx'], factory) :
+	(factory((global['buildmotion-foundation'] = {}),global.ng.core,global.ng.common,global.buildmotionLogging,global.Rx,global.ng.http,global.Action,global.angularRulesEngine.validation.prototype,global.angularRulesEngine.service.prototype,global.angularRulesEngine.service.prototype,global.angularRulesEngine.service.prototype,global.ActionResult,global.angularRulesEngine.rules.prototype,global.angularRulesEngine.rules.prototype,global.logging_service,global.severity_enum,null,global.Rx));
+}(this, (function (exports,core,common,buildmotionLogging,Observable,http,Action,ValidationContext,ServiceMessage,MessageType,ServiceContext,ActionResult,CompositeRule,RuleResult,logging_service,severity_enum,cache,Rx) { 'use strict';
 
 var BuildMotionFoundationModule = /** @class */ (function () {
     function BuildMotionFoundationModule() {
@@ -255,7 +255,7 @@ var ActionBase = /** @class */ (function (_super) {
         var _this = this;
         if (this.actionResult === ActionResult.ActionResult.Fail) {
             this.serviceContext.Messages.forEach(function (e) {
-                if (e.MessageType === index.MessageType.Error) {
+                if (e.MessageType === MessageType.MessageType.Error) {
                     _this.loggingService.log(_this.actionName, severity_enum.Severity.Error, e.toString());
                 }
             });
@@ -327,7 +327,7 @@ var ActionBase = /** @class */ (function (_super) {
          * @param ruleResult
          */
     function (ruleResult) {
-        var serviceMessage = new index.ServiceMessage(ruleResult.rulePolicy.name, ruleResult.rulePolicy.message, index.MessageType.Error);
+        var serviceMessage = new ServiceMessage.ServiceMessage(ruleResult.rulePolicy.name, ruleResult.rulePolicy.message, MessageType.MessageType.Error);
         serviceMessage.DisplayToUser = ruleResult.rulePolicy.isDisplayable;
         serviceMessage.Source = this.actionName;
         this.serviceContext.Messages.push(serviceMessage);
@@ -348,9 +348,9 @@ var BusinessProviderBase = /** @class */ (function () {
     }
     BusinessProviderBase.prototype.handleError = function (error) {
         var _this = this;
-        var message = new index.ServiceMessage(error.name, error.message)
+        var message = new ServiceMessage.ServiceMessage(error.name, error.message)
             .WithDisplayToUser(true)
-            .WithMessageType(index.MessageType.Error)
+            .WithMessageType(MessageType.MessageType.Error)
             .WithSource(this.serviceName);
         this.loggingService.log(this.serviceName, severity_enum.Severity.Error, message.toString());
         this.serviceContext.Messages.forEach(function (e) {
@@ -364,7 +364,7 @@ var BusinessProviderBase = /** @class */ (function () {
         this.loggingService.log(this.serviceName, severity_enum.Severity.Information, "Request for [" + sourceName + "] by " + this.serviceName + " is complete.");
         if (this.serviceContext.hasErrors()) {
             this.loggingService.log(this.serviceName, severity_enum.Severity.Information, "Preparing to write out the errors.");
-            this.serviceContext.Messages.filter(function (f) { return f.DisplayToUser && f.MessageType === index.MessageType.Error; })
+            this.serviceContext.Messages.filter(function (f) { return f.DisplayToUser && f.MessageType === MessageType.MessageType.Error; })
                 .forEach(function (e) { return _this.loggingService.log(_this.serviceName, severity_enum.Severity.Error, e.toString()); });
         }
     };
@@ -387,13 +387,13 @@ var ServiceBase = /** @class */ (function () {
     };
     ServiceBase.prototype.handleError = function (error) {
         var _this = this;
-        var message = new index.ServiceMessage(error.name, error.message)
+        var message = new ServiceMessage.ServiceMessage(error.name, error.message)
             .WithDisplayToUser(true)
-            .WithMessageType(index.MessageType.Error)
+            .WithMessageType(MessageType.MessageType.Error)
             .WithSource(this.serviceName);
         this.loggingService.log(this.serviceName, severity_enum.Severity.Error, message.toString());
         this.serviceContext.Messages.forEach(function (e) {
-            if (e.MessageType === index.MessageType.Error && e.DisplayToUser) {
+            if (e.MessageType === MessageType.MessageType.Error && e.DisplayToUser) {
                 _this.loggingService.log(_this.serviceName, severity_enum.Severity.Error, e.toString());
             }
         });
@@ -453,7 +453,7 @@ var ServiceBase = /** @class */ (function () {
         this.loggingService.log(this.serviceName, severity_enum.Severity.Information, "Request for [" + sourceName + "] by " + this.serviceName + " is complete.");
         if (this.serviceContext.hasErrors()) {
             this.loggingService.log(this.serviceName, severity_enum.Severity.Information, "Preparing to write out the errors.");
-            this.serviceContext.Messages.filter(function (f) { return f.MessageType === index.MessageType.Error && f.DisplayToUser; })
+            this.serviceContext.Messages.filter(function (f) { return f.MessageType === MessageType.MessageType.Error && f.DisplayToUser; })
                 .forEach(function (e) { return _this.loggingService.log(_this.serviceName, severity_enum.Severity.Error, e.toString()); });
         }
     };

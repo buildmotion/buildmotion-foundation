@@ -3,9 +3,9 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/Rx';
 
 import { LoggingService } from 'buildmotion-logging/logging.service';
-import { MessageType } from 'angular-rules-engine/service/index';
-import { ServiceContext } from 'angular-rules-engine/service/index';
-import { ServiceMessage } from 'angular-rules-engine/service/index';
+import { MessageType } from 'angular-rules-engine/service/MessageType';
+import { ServiceContext } from 'angular-rules-engine/service/ServiceContext';
+import { ServiceMessage } from 'angular-rules-engine/service/ServiceMessage';
 import { Severity } from 'buildmotion-logging/severity.enum';
 import { ErrorResponse } from './models/error-response.model';
 import { ServiceError } from './models/service-error.model';

@@ -1,7 +1,7 @@
 import { RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { LoggingService } from 'buildmotion-logging/logging.service';
-import { ServiceContext } from 'angular-rules-engine/service/index';
+import { ServiceContext } from 'angular-rules-engine/service/ServiceContext';
 import { ErrorResponse } from './models/error-response.model';
 /**
  * Use this class as a base for application [services]. Add and/or implement
