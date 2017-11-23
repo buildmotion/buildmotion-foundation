@@ -3,5 +3,5 @@ export declare class ErrorResponse {
     IsSuccess: boolean;
     Message: string;
     Errors: Array<ServiceError>;
-    Exception: any;
+    Exception: Error;
 }

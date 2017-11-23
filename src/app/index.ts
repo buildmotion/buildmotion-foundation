@@ -7,3 +7,4 @@ export * from './service-base.service'
 export * from './models/error-response.model';
 export * from './models/service-error.model';
 export * from './models/service-response.model';
+export * from './models/oauth-error-response.model';

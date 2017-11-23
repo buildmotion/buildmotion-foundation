@@ -1,6 +1,7 @@
-import { ServiceError } from './service-error.model';
-var ErrorResponse = /** @class */ (function () {
+var ErrorResponse = (function () {
     function ErrorResponse() {
+        this.IsSuccess = false;
+        this.Errors = new Array();
     }
     return ErrorResponse;
 }());

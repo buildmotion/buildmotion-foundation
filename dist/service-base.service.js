@@ -1,13 +1,9 @@
-import { RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/Rx';
-import { LoggingService } from 'buildmotion-logging/logging.service';
-import { MessageType } from 'angular-rules-engine/service/MessageType';
-import { ServiceContext } from 'angular-rules-engine/service/ServiceContext';
-import { ServiceMessage } from 'angular-rules-engine/service/ServiceMessage';
-import { Severity } from 'buildmotion-logging/severity.enum';
+import { BehaviorSubject } from 'rxjs';
+import { MessageType } from 'angular-rules-engine';
+import { ServiceContext } from 'angular-rules-engine';
+import { ServiceMessage } from 'angular-rules-engine';
+import { Severity } from 'buildmotion-logging';
 import { ErrorResponse } from './models/error-response.model';
-import { ServiceError } from './models/service-error.model';
 /**
  * Use this class as a base for application [services]. Add and/or implement
  * common behavior. For example, this base service class will
@@ -20,62 +16,90 @@ var /**
  * always initialize a new [ServiceContext] for the specified service
  * instance.
  */
-ServiceBase = /** @class */ (function () {
+ServiceBase = (function () {
     function ServiceBase(loggingService) {
         this.loggingService = loggingService;
+        this.serviceInitDateTime = new Date();
+        /**
+             * Use this public property to set/retrieve the user's
+             * security token. Most of the web api calls will require an
+             * authorization token for the authenticated user.
+             */
+        this.accessToken = '';
+        this.serviceContext = new ServiceContext();
     }
     ServiceBase.prototype.extractData = function (res) {
         var body = res.json();
         return body.data || {};
     };
-    ServiceBase.prototype.handleError = function (error) {
-        var _this = this;
+    /**
+    * Use to handle an unexpected error in the application. The error should implement
+    * the specified interface. The method will add a new [ServiceMessage] to the
+    * specified [ServiceContext].
+    * @param error An unexpected application error that implements the [Error] interface.
+    *
+    * interface Error {
+    *  name: string;
+    *  message: string;
+    *  stack?: string;
+    * }
+    */
+    /**
+         * Use to handle an unexpected error in the application. The error should implement
+         * the specified interface. The method will add a new [ServiceMessage] to the
+         * specified [ServiceContext].
+         * @param error An unexpected application error that implements the [Error] interface.
+         *
+         * interface Error {
+         *  name: string;
+         *  message: string;
+         *  stack?: string;
+         * }
+         */
+    ServiceBase.prototype.handleUnexpectedError = /**
+         * Use to handle an unexpected error in the application. The error should implement
+         * the specified interface. The method will add a new [ServiceMessage] to the
+         * specified [ServiceContext].
+         * @param error An unexpected application error that implements the [Error] interface.
+         *
+         * interface Error {
+         *  name: string;
+         *  message: string;
+         *  stack?: string;
+         * }
+         */
+    function (error) {
         var message = new ServiceMessage(error.name, error.message)
             .WithDisplayToUser(true)
             .WithMessageType(MessageType.Error)
             .WithSource(this.serviceName);
-        this.loggingService.log(this.serviceName, Severity.Error, message.toString());
-        this.serviceContext.Messages.forEach(function (e) {
-            if (e.MessageType === MessageType.Error && e.DisplayToUser) {
-                _this.loggingService.log(_this.serviceName, Severity.Error, e.toString());
-            }
-        });
+        var logItem = message.toString() + "; " + error.stack;
+        this.loggingService.log(this.serviceName, Severity.Error, logItem);
+        this.serviceContext.addMessage(message);
     };
     /**
-        * Use to handle HTTP errors when calling web api(s).
-        */
+     * Use this method to handle an error from the OAuth Provider API.
+     * @param error
+     * @param requestOptions
+     */
     /**
-            * Use to handle HTTP errors when calling web api(s).
-            */
-    ServiceBase.prototype.handleHttpError = /**
-            * Use to handle HTTP errors when calling web api(s).
-            */
+         * Use this method to handle an error from the OAuth Provider API.
+         * @param error
+         * @param requestOptions
+         */
+    ServiceBase.prototype.handleOAuthError = /**
+         * Use this method to handle an error from the OAuth Provider API.
+         * @param error
+         * @param requestOptions
+         */
     function (error, requestOptions) {
         var message = error.toString() + " " + requestOptions.url + ", " + JSON.stringify(requestOptions.body);
         this.loggingService.log(this.serviceName, Severity.Error, message);
         if (error && error._body) {
             try {
-                var response_1 = error.json();
+                var response_1 = this.createErrorResponse("Unable to validate credentials.");
                 var subject_1 = new BehaviorSubject(response_1);
                 return subject_1.asObservable();
-            }
-            catch (error) {
-                this.loggingService.log(this.serviceName, Severity.Error, error.toString());
-            }
-        }
-        // default return behavior;
-        var response = this.createErrorResponse('Unexpected error while processing response.');
-        var subject = new BehaviorSubject(response);
-        return subject.asObservable();
-    };
-    ServiceBase.prototype.handleOAuthError = function (error, requestOptions) {
-        var message = error.toString() + " " + requestOptions.url + ", " + JSON.stringify(requestOptions.body);
-        this.loggingService.log(this.serviceName, Severity.Error, message);
-        if (error && error._body) {
-            try {
-                var response_2 = this.createErrorResponse("Unable to validate credentials.");
-                var subject_2 = new BehaviorSubject(response_2);
-                return subject_2.asObservable();
             }
             catch (e) {
                 this.loggingService.log(this.serviceName, Severity.Error, e.toString());

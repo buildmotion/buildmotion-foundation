@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
+        "baseUrl": "",
         "declaration": true, /* generate type definition files; */
+        "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "inlineSources": true,
         "lib": [
@@ -10,12 +11,12 @@
         ],
         "module": "es2015",
         "moduleResolution": "node",
-        "noImplicitAny": false, /* true to support Angular 4.0 */
+        "noImplicitAny": true, /* true to support Angular 4.0 */
         "outDir": "dist",
         "paths": {
-            "@angular/core": ["node_modules/@angular/core/*"],
+            "angular-rules-engine": ["node_modules/angular-rules-engine/*"],
+            "angular-actions": ["node_modules/angular-actions/*"],
             "@angular/http": ["node_modules/@angular/http/*"],
-            "@angular/router": ["node_modules/@angular/router/*"],
             "rxjs/*": ["node_modules/rxjs/*"],
             "buildmotion-logging": ["node_modules/buildmotion-logging/*"]
         },

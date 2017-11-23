@@ -1,28 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Request, RequestMethod, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Headers, Http, Request, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/cache';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { Severity } from 'buildmotion-logging/severity.enum';
 import { LoggingService } from 'buildmotion-logging/logging.service';
 import { ErrorResponse } from './models/error-response.model';
-import { ServiceError } from './models/service-error.model';
 /**
  * Use to create and execute HTTP service requests.
  * 1. Create Headers
  * 2. Create RequestOptions
  * 3. Execute Request
  */
-var /**
- * Use to create and execute HTTP service requests.
- * 1. Create Headers
- * 2. Create RequestOptions
- * 3. Execute Request
- */
-HttpBaseService = /** @class */ (function () {
+var HttpBaseService = (function () {
     function HttpBaseService(http, loggingService) {
         this.http = http;
         this.loggingService = loggingService;
+        this.serviceName = 'HttpBaseService';
     }
     /**
      * Use to create a [Header] for [multipart/form-data].
@@ -151,35 +144,45 @@ HttpBaseService = /** @class */ (function () {
                     return subject.asObservable();
                 }
                 else {
-                    return this.handleUnexpectedError();
+                    // TODO: RETRIEVE ERROR DETAILS; STATUS, MESSAGE; ETC. AND PROVIDE TO HANDLER;
+                    return this.handleUnexpectedError(error);
                 }
             }
-            catch (error) {
-                this.loggingService.log(this.serviceName, Severity.Error, error.toString());
-                return this.handleUnexpectedError();
+            catch (ex) {
+                var err = ex;
+                var errorMessage = err.name + "; " + err.message;
+                this.loggingService.log(this.serviceName, Severity.Error, errorMessage);
+                return this.handleUnexpectedError(err);
             }
         }
         else {
-            return this.handleUnexpectedError();
+            return this.handleUnexpectedError(error);
         }
     };
-    HttpBaseService.prototype.handleUnexpectedError = function () {
-        var response = this.createErrorResponse('Unexpected error while processing response.');
+    HttpBaseService.prototype.handleUnexpectedError = function (error) {
+        var response = this.createErrorResponse(error);
         var subject = new BehaviorSubject(response);
         return subject.asObservable();
     };
-    HttpBaseService.prototype.createErrorResponse = function (message) {
+    HttpBaseService.prototype.createErrorResponse = function (error) {
+        var message = 'Unexpected error while processing response.';
         var response = new ErrorResponse();
+        if (error instanceof Error) {
+            message = error.name + " - " + error.message;
+            response.Exception = error;
+        }
         response.Message = message;
         return response;
     };
+    HttpBaseService.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    HttpBaseService.ctorParameters = function () { return [
+        { type: Http, },
+        { type: LoggingService, },
+    ]; };
     return HttpBaseService;
 }());
-/**
- * Use to create and execute HTTP service requests.
- * 1. Create Headers
- * 2. Create RequestOptions
- * 3. Execute Request
- */
 export { HttpBaseService };
 //# sourceMappingURL=http-base.service.js.map

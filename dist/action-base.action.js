@@ -8,21 +8,14 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { Observable } from 'rxjs/Observable';
-import { Response } from '@angular/http';
-import { Action } from 'angular-actions/action/Action';
-import { ValidationContext } from 'angular-rules-engine/validation/ValidationContext';
-import { ServiceMessage } from 'angular-rules-engine/service/ServiceMessage';
-import { MessageType } from 'angular-rules-engine/service/MessageType';
-import { ServiceContext } from 'angular-rules-engine/service/ServiceContext';
-import { ActionResult } from 'angular-actions/action/ActionResult';
-import { CompositeRule } from 'angular-rules-engine/rules/CompositeRule';
-import { RuleResult } from 'angular-rules-engine/rules/RuleResult';
-import { LoggingService } from 'buildmotion-logging/logging.service';
-import { Severity } from 'buildmotion-logging/severity.enum';
-import { HttpBaseService } from './http-base.service';
+import { Observable } from 'rxjs/observable';
+import { Action } from 'angular-actions';
+import { ServiceMessage } from 'angular-rules-engine';
+import { MessageType } from 'angular-rules-engine';
+import { ActionResult } from 'angular-actions';
+import { CompositeRule } from 'angular-rules-engine';
+import { Severity } from 'buildmotion-logging';
 import { ErrorResponse } from './models/error-response.model';
-import { ServiceError } from './models/service-error.model';
 /**
  * This is the application's base Action class that provides implementation of pipeline methods - pre/post
  * execution methods.
@@ -63,7 +56,7 @@ var /**
  *		2. validateActionResult();
  *		3. finish();
  */
-ActionBase = /** @class */ (function (_super) {
+ActionBase = (function (_super) {
     __extends(ActionBase, _super);
     function ActionBase() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -119,7 +112,7 @@ ActionBase = /** @class */ (function (_super) {
     function () {
         this.loggingService.log(this.actionName, Severity.Information, "Running [validateActionResult] for " + this.actionName + ".");
         // determine the status of the action based on any rule violations;
-        if (this._validationContext.hasRuleViolations()) {
+        if (this.validationContext.hasRuleViolations()) {
             this.loggingService.log(this.actionName, Severity.Error, "The " + this.actionName + " contains rule violations.");
             this.actionResult = ActionResult.Fail;
             var errorResponse = new ErrorResponse();

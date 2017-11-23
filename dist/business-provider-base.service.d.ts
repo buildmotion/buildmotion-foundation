@@ -1,5 +1,5 @@
-import { LoggingService } from 'buildmotion-logging/logging.service';
-import { ServiceContext } from 'angular-rules-engine/service/ServiceContext';
+import { LoggingService } from 'buildmotion-logging';
+import { ServiceContext } from 'angular-rules-engine';
 /**
  * Use the business provider base class to access common elements of the business provider.
  *
@@ -11,6 +11,18 @@ export declare class BusinessProviderBase {
     serviceContext: ServiceContext;
     accessToken: string;
     constructor(loggingService: LoggingService);
-    handleError(error: any): void;
+    /**
+     * Use to handle an unexpected error in the application. The error should implement
+     * the specified interface. The method will add a new [ServiceMessage] to the
+     * specified [ServiceContext].
+     * @param error An unexpected application error that implements the [Error] interface.
+     *
+     * interface Error {
+     *  name: string;
+     *  message: string;
+     *  stack?: string;
+     * }
+     */
+    handleUnexpectedError(error: Error): void;
     finishRequest(sourceName: string): void;
 }

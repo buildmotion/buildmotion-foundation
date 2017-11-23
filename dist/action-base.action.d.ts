@@ -1,10 +1,10 @@
-import { Observable } from 'rxjs/Observable';
-import { Action } from 'angular-actions/action/Action';
-import { ValidationContext } from 'angular-rules-engine/validation/ValidationContext';
-import { ServiceContext } from 'angular-rules-engine/service/ServiceContext';
-import { ActionResult } from 'angular-actions/action/ActionResult';
-import { RuleResult } from 'angular-rules-engine/rules/RuleResult';
-import { LoggingService } from 'buildmotion-logging/logging.service';
+import { Observable } from 'rxjs/observable';
+import { Action } from 'angular-actions';
+import { ValidationContext } from 'angular-rules-engine';
+import { ServiceContext } from 'angular-rules-engine';
+import { ActionResult } from 'angular-actions';
+import { RuleResult } from 'angular-rules-engine';
+import { LoggingService } from 'buildmotion-logging';
 import { HttpBaseService } from './http-base.service';
 /**
  * This is the application's base Action class that provides implementation of pipeline methods - pre/post

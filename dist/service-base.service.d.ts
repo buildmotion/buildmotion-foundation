@@ -1,8 +1,9 @@
 import { RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { LoggingService } from 'buildmotion-logging/logging.service';
-import { ServiceContext } from 'angular-rules-engine/service/ServiceContext';
+import { Observable } from 'rxjs/observable';
+import { LoggingService } from 'buildmotion-logging';
+import { ServiceContext } from 'angular-rules-engine';
 import { ErrorResponse } from './models/error-response.model';
+import { OAuthErrorResponse } from './models/oauth-error-response.model';
 /**
  * Use this class as a base for application [services]. Add and/or implement
  * common behavior. For example, this base service class will
@@ -22,12 +23,25 @@ export declare class ServiceBase {
     serviceContext: ServiceContext;
     constructor(loggingService: LoggingService);
     extractData(res: Response): any;
-    handleError(error: any): void;
     /**
-        * Use to handle HTTP errors when calling web api(s).
-        */
-    handleHttpError(error: any, requestOptions: RequestOptions): Observable<Response>;
-    handleOAuthError(error: any, requestOptions: RequestOptions): Observable<Response>;
+    * Use to handle an unexpected error in the application. The error should implement
+    * the specified interface. The method will add a new [ServiceMessage] to the
+    * specified [ServiceContext].
+    * @param error An unexpected application error that implements the [Error] interface.
+    *
+    * interface Error {
+    *  name: string;
+    *  message: string;
+    *  stack?: string;
+    * }
+    */
+    handleUnexpectedError(error: Error): void;
+    /**
+     * Use this method to handle an error from the OAuth Provider API.
+     * @param error
+     * @param requestOptions
+     */
+    handleOAuthError(error: OAuthErrorResponse, requestOptions: RequestOptions): Observable<Response>;
     createErrorResponse(message: string): ErrorResponse;
     finishRequest(sourceName: string): void;
 }

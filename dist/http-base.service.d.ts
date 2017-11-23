@@ -1,5 +1,5 @@
 import { Headers, Http, RequestMethod, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/observable';
 import 'rxjs/add/operator/cache';
 import { LoggingService } from 'buildmotion-logging/logging.service';
 import { ErrorResponse } from './models/error-response.model';
@@ -44,6 +44,6 @@ export declare class HttpBaseService {
      * Use to handle HTTP errors when calling web api(s).
      */
     handleHttpError(error: any, requestOptions: RequestOptions): Observable<Response>;
-    handleUnexpectedError(): Observable<any>;
-    createErrorResponse(message: string): ErrorResponse;
+    handleUnexpectedError(error?: Error): Observable<any>;
+    createErrorResponse(error?: Error): ErrorResponse;
 }

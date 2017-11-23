@@ -1,0 +1,1 @@
+{"version":3,"file":"oauth-error-response.model.js","sourceRoot":"","sources":["../../src/app/models/oauth-error-response.model.ts"],"names":[],"mappings":"","sourcesContent":["\r\nexport interface OAuthErrorResponse {\r\n    _body: string;\r\n}"]}

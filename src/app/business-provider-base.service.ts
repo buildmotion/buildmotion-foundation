@@ -1,9 +1,9 @@
-import { LoggingService } from 'buildmotion-logging/logging.service';
+import { LoggingService } from 'buildmotion-logging';
 
-import { ServiceContext } from 'angular-rules-engine/service/ServiceContext';
-import { ServiceMessage } from 'angular-rules-engine/service/ServiceMessage';
-import { MessageType } from 'angular-rules-engine/service/MessageType';
-import { Severity } from 'buildmotion-logging/severity.enum';
+import { ServiceContext } from 'angular-rules-engine';
+import { ServiceMessage } from 'angular-rules-engine';
+import { MessageType } from 'angular-rules-engine';
+import { Severity } from 'buildmotion-logging';
 
 /**
  * Use the business provider base class to access common elements of the business provider.
@@ -19,19 +19,28 @@ export class BusinessProviderBase {
         this.loggingService.log(this.serviceName, Severity.Information, `Running constructor for the [BusinessProviderBase].`);
     }
 
-    handleError(error): void {
+    /**
+     * Use to handle an unexpected error in the application. The error should implement 
+     * the specified interface. The method will add a new [ServiceMessage] to the 
+     * specified [ServiceContext].
+     * @param error An unexpected application error that implements the [Error] interface.
+     * 
+     * interface Error {
+     *  name: string;
+     *  message: string;
+     *  stack?: string;
+     * }
+     */
+    handleUnexpectedError(error: Error): void {
         let message = new ServiceMessage(error.name, error.message)
             .WithDisplayToUser(true)
             .WithMessageType(MessageType.Error)
             .WithSource(this.serviceName);
 
-        this.loggingService.log(this.serviceName, Severity.Error, message.toString());
+        const logItem = `${message.toString()}; ${error.stack}`;
+        this.loggingService.log(this.serviceName, Severity.Error, logItem);
 
-        this.serviceContext.Messages.forEach(e => {
-            if (e.DisplayToUser) {
-                this.loggingService.log(this.serviceName, Severity.Error, e.toString());
-            }
-        });
+        this.serviceContext.addMessage(message);
     }
 
     finishRequest(sourceName: string): void {

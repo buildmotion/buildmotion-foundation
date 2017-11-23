@@ -1,17 +1,17 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/observable';
 import { Response } from '@angular/http';
 
-import { Action } from 'angular-actions/action/Action';
-import { ValidationContext } from 'angular-rules-engine/validation/ValidationContext';
-import { ServiceMessage } from 'angular-rules-engine/service/ServiceMessage';
-import { MessageType } from 'angular-rules-engine/service/MessageType';
-import { ServiceContext } from 'angular-rules-engine/service/ServiceContext';
-import { ActionResult } from 'angular-actions/action/ActionResult';
-import { CompositeRule } from 'angular-rules-engine/rules/CompositeRule';
-import { RuleResult } from 'angular-rules-engine/rules/RuleResult';
+import { Action } from 'angular-actions';
+import { ValidationContext } from 'angular-rules-engine';
+import { ServiceMessage } from 'angular-rules-engine';
+import { MessageType } from 'angular-rules-engine';
+import { ServiceContext } from 'angular-rules-engine';
+import { ActionResult } from 'angular-actions';
+import { CompositeRule } from 'angular-rules-engine';
+import { RuleResult } from 'angular-rules-engine';
 
-import { LoggingService } from 'buildmotion-logging/logging.service';
-import { Severity } from 'buildmotion-logging/severity.enum';
+import { LoggingService } from 'buildmotion-logging';
+import { Severity } from 'buildmotion-logging';
 import { HttpBaseService } from './http-base.service';
 import { ErrorResponse } from './models/error-response.model';
 import { ServiceError } from './models/service-error.model';
@@ -84,7 +84,7 @@ export class ActionBase extends Action {
     validateActionResult(): ActionResult {
         this.loggingService.log(this.actionName, Severity.Information, `Running [validateActionResult] for ${this.actionName}.`);
         // determine the status of the action based on any rule violations;
-        if (this._validationContext.hasRuleViolations()) {
+        if (this.validationContext.hasRuleViolations()) {
             this.loggingService.log(this.actionName, Severity.Error, `The ${this.actionName} contains rule violations.`);
             this.actionResult = ActionResult.Fail;
 

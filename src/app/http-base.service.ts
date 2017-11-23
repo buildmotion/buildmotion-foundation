@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Request, RequestMethod, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/observable';
 import  'rxjs/add/operator/cache';
 import { BehaviorSubject } from 'rxjs/Rx';
 
@@ -109,25 +109,33 @@ export class HttpBaseService {
                     let subject: BehaviorSubject<any> = new BehaviorSubject(response);
                     return subject.asObservable();
                 } else {
-                    return this.handleUnexpectedError();
+                    // TODO: RETRIEVE ERROR DETAILS; STATUS, MESSAGE; ETC. AND PROVIDE TO HANDLER;
+                    return this.handleUnexpectedError(error);
                 }
-            } catch (error) {
-                this.loggingService.log(this.serviceName, Severity.Error, error.toString());
-                return this.handleUnexpectedError();
+            } catch (ex) {
+                const err = <Error>ex;
+                const errorMessage = `${err.name}; ${err.message}`;
+                this.loggingService.log(this.serviceName, Severity.Error, errorMessage);
+                return this.handleUnexpectedError(err);
             }
         } else {
-            return this.handleUnexpectedError();
+            return this.handleUnexpectedError(error);
         }
     }
 
-    handleUnexpectedError() {
-        let response = this.createErrorResponse('Unexpected error while processing response.');
+    handleUnexpectedError(error?: Error) {
+        let response = this.createErrorResponse(error);
         let subject: BehaviorSubject<any> = new BehaviorSubject(response);
         return subject.asObservable();
     }
 
-    createErrorResponse(message: string): ErrorResponse {
+    createErrorResponse(error?: Error): ErrorResponse {
+        let message = 'Unexpected error while processing response.';
         let response: ErrorResponse = new ErrorResponse();
+        if(error instanceof Error) {
+            message = `${error.name} - ${error.message}`;
+            response.Exception = error;
+        }
         response.Message = message;
         return response;
     }

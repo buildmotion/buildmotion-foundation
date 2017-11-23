@@ -12,7 +12,7 @@ var /**
  * The DisplayToUser boolean value indicates whether the message should be
  * displayed to the user if desired.
  */
-ServiceError = /** @class */ (function () {
+ServiceError = (function () {
     function ServiceError() {
     }
     return ServiceError;

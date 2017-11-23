@@ -1,8 +1,6 @@
-import { LoggingService } from 'buildmotion-logging/logging.service';
-import { ServiceContext } from 'angular-rules-engine/service/ServiceContext';
-import { ServiceMessage } from 'angular-rules-engine/service/ServiceMessage';
-import { MessageType } from 'angular-rules-engine/service/MessageType';
-import { Severity } from 'buildmotion-logging/severity.enum';
+import { ServiceMessage } from 'angular-rules-engine';
+import { MessageType } from 'angular-rules-engine';
+import { Severity } from 'buildmotion-logging';
 /**
  * Use the business provider base class to access common elements of the business provider.
  *
@@ -13,23 +11,55 @@ var /**
  *
  * serviceContext: This is initialized for each instance of a business provider - its purpose is to collect information during the processing of business logic.
  */
-BusinessProviderBase = /** @class */ (function () {
+BusinessProviderBase = (function () {
     function BusinessProviderBase(loggingService) {
         this.loggingService = loggingService;
         this.loggingService.log(this.serviceName, Severity.Information, "Running constructor for the [BusinessProviderBase].");
     }
-    BusinessProviderBase.prototype.handleError = function (error) {
-        var _this = this;
+    /**
+     * Use to handle an unexpected error in the application. The error should implement
+     * the specified interface. The method will add a new [ServiceMessage] to the
+     * specified [ServiceContext].
+     * @param error An unexpected application error that implements the [Error] interface.
+     *
+     * interface Error {
+     *  name: string;
+     *  message: string;
+     *  stack?: string;
+     * }
+     */
+    /**
+         * Use to handle an unexpected error in the application. The error should implement
+         * the specified interface. The method will add a new [ServiceMessage] to the
+         * specified [ServiceContext].
+         * @param error An unexpected application error that implements the [Error] interface.
+         *
+         * interface Error {
+         *  name: string;
+         *  message: string;
+         *  stack?: string;
+         * }
+         */
+    BusinessProviderBase.prototype.handleUnexpectedError = /**
+         * Use to handle an unexpected error in the application. The error should implement
+         * the specified interface. The method will add a new [ServiceMessage] to the
+         * specified [ServiceContext].
+         * @param error An unexpected application error that implements the [Error] interface.
+         *
+         * interface Error {
+         *  name: string;
+         *  message: string;
+         *  stack?: string;
+         * }
+         */
+    function (error) {
         var message = new ServiceMessage(error.name, error.message)
             .WithDisplayToUser(true)
             .WithMessageType(MessageType.Error)
             .WithSource(this.serviceName);
-        this.loggingService.log(this.serviceName, Severity.Error, message.toString());
-        this.serviceContext.Messages.forEach(function (e) {
-            if (e.DisplayToUser) {
-                _this.loggingService.log(_this.serviceName, Severity.Error, e.toString());
-            }
-        });
+        var logItem = message.toString() + "; " + error.stack;
+        this.loggingService.log(this.serviceName, Severity.Error, logItem);
+        this.serviceContext.addMessage(message);
     };
     BusinessProviderBase.prototype.finishRequest = function (sourceName) {
         var _this = this;
