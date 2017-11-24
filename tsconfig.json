@@ -31,7 +31,8 @@
         "./src/app/index.ts"
     ],
     "angularCompilerOptions": {
-        "strictMetadataEmit": true,
-        "genDir": "aot-dist"
+        "skipTemplateCodegen": true,
+		"strictMetadataEmit": true,
+		"genDir": "aot-dist"
     }
 }
