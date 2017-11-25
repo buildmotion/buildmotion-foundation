@@ -1,6 +1,6 @@
 {
   "name": "buildmotion-foundation",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "An Angular custom module that contains foundation elements for buildmotion Angular applications. Basically, the framework for buildmotion NG.",
   "main": "bundles/buildmotion-foundation.umd.js",
   "module": "index.js",
@@ -38,7 +38,7 @@
     "rxjs": "^5.5.0",
     "angular-actions": "^2.0.0",
     "angular-rules-engine": "^2.1.1",
-    "buildmotion-logging": "^2.0.1"
+    "buildmotion-logging": "^2.0.5"
   },
   "dependencies": {
     "buildmotion-logging": "^2.0.3"
