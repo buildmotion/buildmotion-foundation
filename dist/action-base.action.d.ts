@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import { Action } from 'angular-actions';
 import { ValidationContext } from 'angular-rules-engine';
 import { ServiceContext } from 'angular-rules-engine';

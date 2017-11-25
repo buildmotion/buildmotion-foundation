@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('buildmotion-logging'), require('rxjs/observable'), require('angular-actions'), require('angular-rules-engine'), require('@angular/http'), require('rxjs/Rx'), require('buildmotion-logging/severity.enum'), require('buildmotion-logging/logging.service'), require('rxjs')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common', 'buildmotion-logging', 'rxjs/observable', 'angular-actions', 'angular-rules-engine', '@angular/http', 'rxjs/Rx', 'buildmotion-logging/severity.enum', 'buildmotion-logging/logging.service', 'rxjs'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('buildmotion-logging'), require('rxjs/Observable'), require('angular-actions'), require('angular-rules-engine'), require('@angular/http'), require('rxjs/Rx'), require('buildmotion-logging/severity.enum'), require('buildmotion-logging/logging.service'), require('rxjs')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common', 'buildmotion-logging', 'rxjs/Observable', 'angular-actions', 'angular-rules-engine', '@angular/http', 'rxjs/Rx', 'buildmotion-logging/severity.enum', 'buildmotion-logging/logging.service', 'rxjs'], factory) :
 	(factory((global.buildmotionFoundation = {}),global.ng.core,global.ng.common,global.buildmotionLogging,global.Rx.Observable.prototype,global.angularActions,global.angularRulesEngine,global.ng.http,global.Rx,global['buildmotionLogging/Severity'],global['buildmotionLogging/LoggingService'],global.Rx));
-}(this, (function (exports,core,common,buildmotionLogging,observable,angularActions,angularRulesEngine,http,Rx,severity_enum,logging_service,rxjs) { 'use strict';
+}(this, (function (exports,core,common,buildmotionLogging,Observable,angularActions,angularRulesEngine,http,Rx,severity_enum,logging_service,rxjs) { 'use strict';
 
 var BuildMotionFoundationModule = (function () {
     function BuildMotionFoundationModule() {
@@ -121,7 +121,7 @@ var ActionBase = (function (_super) {
             var errorResponse = new ErrorResponse();
             errorResponse.IsSuccess = false;
             errorResponse.Message = "Validation errors exist.";
-            this.response = observable.Observable.throw(errorResponse);
+            this.response = Observable.Observable.throw(errorResponse);
         }
         this.actionResult = this.serviceContext.isGood() ? angularActions.ActionResult.Success : angularActions.ActionResult.Fail;
         return this.actionResult;

@@ -11,7 +11,7 @@ export default {
 		'rxjs': 'Rx',
 		'rxjs/Rx': 'Rx',
 		'rxjs/Rx/BehaviorSubject': 'Rx.BehaviorSubject.prototype',
-		'rxjs/observable': 'Rx.Observable.prototype',
+		'rxjs/Observable': 'Rx.Observable.prototype',
 		'angular-rules-engine': 'angularRulesEngine',
 		'angular-actions': 'angularActions',
 		'buildmotion-logging': 'buildmotionLogging',

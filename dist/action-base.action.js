@@ -8,7 +8,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import { Action } from 'angular-actions';
 import { ServiceMessage } from 'angular-rules-engine';
 import { MessageType } from 'angular-rules-engine';
