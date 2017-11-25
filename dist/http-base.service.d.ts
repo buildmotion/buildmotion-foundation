@@ -1,6 +1,5 @@
 import { Headers, Http, RequestMethod, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/observable';
-import 'rxjs/add/operator/cache';
 import { LoggingService } from 'buildmotion-logging/logging.service';
 import { ErrorResponse } from './models/error-response.model';
 /**

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Request, RequestMethod, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/observable';
-import  'rxjs/add/operator/cache';
 import { BehaviorSubject } from 'rxjs/Rx';
 
 import { Severity } from 'buildmotion-logging/severity.enum';

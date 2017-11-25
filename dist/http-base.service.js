@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Request, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/cache';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { Severity } from 'buildmotion-logging/severity.enum';
 import { LoggingService } from 'buildmotion-logging/logging.service';
