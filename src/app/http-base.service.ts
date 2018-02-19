@@ -3,8 +3,8 @@ import { Headers, Http, Request, RequestMethod, RequestOptions, Response } from 
 import { Observable } from 'rxjs/observable';
 import { BehaviorSubject } from 'rxjs/Rx';
 
-import { Severity } from 'buildmotion-logging/severity.enum';
-import { LoggingService } from 'buildmotion-logging/logging.service';
+import { Severity } from '@buildmotion/logging';
+import { LoggingService } from '@buildmotion/logging/';
 import { ErrorResponse } from './models/error-response.model';
 import { ServiceError } from './models/service-error.model';
 

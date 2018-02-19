@@ -10,8 +10,8 @@ import { ActionResult } from 'angular-actions';
 import { CompositeRule } from 'angular-rules-engine';
 import { RuleResult } from 'angular-rules-engine';
 
-import { LoggingService } from 'buildmotion-logging';
-import { Severity } from 'buildmotion-logging';
+import { LoggingService } from '@buildmotion/logging';
+import { Severity } from '@buildmotion/logging';
 import { HttpBaseService } from './http-base.service';
 import { ErrorResponse } from './models/error-response.model';
 import { ServiceError } from './models/service-error.model';
