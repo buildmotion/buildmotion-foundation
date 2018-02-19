@@ -1,6 +1,6 @@
 {
   "name": "@buildmotion/foundation",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "description": "An Angular custom module that contains foundation elements for buildmotion Angular applications. Basically, the framework for buildmotion NG.",
   "main": "index.js",
   "module": "./buildmotion-foundation.js",
