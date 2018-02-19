@@ -1,26 +1,32 @@
 {
-  "name": "buildmotion-foundation",
-  "version": "2.0.11",
+  "name": "@buildmotion/foundation",
+  "version": "3.0.0",
   "description": "An Angular custom module that contains foundation elements for buildmotion Angular applications. Basically, the framework for buildmotion NG.",
-  "main": "bundles/buildmotion-foundation.umd.js",
-  "module": "index.js",
-  "typings": "index.d.ts",
+  "main": "index.js",
+  "module": "./buildmotion-foundation.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "transpile": "ngc",
+    "build": "npm run clean && npm run transpile && npm run move",
+    "clean": "npm run clean:dist",
+    "clean:dist": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./remove-dist-dir.ps1",
+    "move": "npm run move:assets",
+    "move:assets": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./move-assets.ps1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/buildmotion/buildmotion-foundation"
   },
   "keywords": [
-    "buildmotion",
     "Angular",
-    "framework",
-    "business actions",
-    "build motion framework",
+    "security",
+    "Build Motion",
     "Matt Vaughn",
-    "rule engine",
-    "typescript rule engine",
-    "angular rule engine",
-    "rules",
-    "build motion"
+    "Angularlicious",
+    "buildmotion",
+    "#Angularlicious",
+    "OAuth",
+    "login"
   ],
   "author": {
     "name": "Matt Vaughn",
@@ -28,19 +34,27 @@
     "url": "http://www.buildmotion.com"
   },
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/buildmotion/buildmotion-foundation/issues"
-  },
-  "homepage": "https://github.com/buildmotion/buildmotion-foundation#readme",
   "peerDependencies": {
-    "@angular/core": "^5.0.1",
-    "@angular/http": "^5.0.1",
-    "rxjs": "^5.5.0",
+    "@angular/http": "^5.0.2",
     "angular-actions": "^2.0.0",
     "angular-rules-engine": "^2.1.1",
-    "buildmotion-logging": "^2.0.5"
+    "@buildmotion/logging": "^2.1.0",
+    "rxjs": "^5.5.0"
   },
   "dependencies": {
-    "buildmotion-logging": "^2.0.3"
+    "@angular/http": "^5.0.2",
+    "@buildmotion/logging": "^2.1.0",
+    "angular-actions": "^2.0.0",
+    "angular-rules-engine": "^2.1.1",
+    "rxjs": "^5.5.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.5.2",
+    "@angular/common": "^5.0.2",
+    "@angular/compiler": "^5.0.2",
+    "@angular/compiler-cli": "^5.0.2",
+    "@angular/core": "^5.0.2",
+    "rollup": "^0.50.0",
+    "uglify-js": "^3.1.10"
   }
 }

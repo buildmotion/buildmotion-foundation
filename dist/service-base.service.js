@@ -1,9 +1,13 @@
-import { BehaviorSubject } from 'rxjs';
-import { MessageType } from 'angular-rules-engine';
-import { ServiceContext } from 'angular-rules-engine';
-import { ServiceMessage } from 'angular-rules-engine';
-import { Severity } from 'buildmotion-logging';
-import { ErrorResponse } from './models/error-response.model';
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+import { BehaviorSubject } from "rxjs";
+import { MessageType } from "angular-rules-engine";
+import { ServiceContext } from "angular-rules-engine";
+import { ServiceMessage } from "angular-rules-engine";
+import { Severity } from "@buildmotion/logging";
+import { ErrorResponse } from "./models/error-response.model";
 /**
  * Use this class as a base for application [services]. Add and/or implement
  * common behavior. For example, this base service class will
@@ -21,15 +25,23 @@ ServiceBase = (function () {
         this.loggingService = loggingService;
         this.serviceInitDateTime = new Date();
         /**
-             * Use this public property to set/retrieve the user's
-             * security token. Most of the web api calls will require an
-             * authorization token for the authenticated user.
-             */
+         * Use this public property to set/retrieve the user's
+         * security token. Most of the web api calls will require an
+         * authorization token for the authenticated user.
+         */
         this.accessToken = '';
         this.serviceContext = new ServiceContext();
     }
-    ServiceBase.prototype.extractData = function (res) {
-        var body = res.json();
+    /**
+     * @param {?} res
+     * @return {?}
+     */
+    ServiceBase.prototype.extractData = /**
+     * @param {?} res
+     * @return {?}
+     */
+    function (res) {
+        var /** @type {?} */ body = res.json();
         return body.data || {};
     };
     /**
@@ -45,35 +57,37 @@ ServiceBase = (function () {
     * }
     */
     /**
-         * Use to handle an unexpected error in the application. The error should implement
-         * the specified interface. The method will add a new [ServiceMessage] to the
-         * specified [ServiceContext].
-         * @param error An unexpected application error that implements the [Error] interface.
-         *
-         * interface Error {
-         *  name: string;
-         *  message: string;
-         *  stack?: string;
-         * }
-         */
+     * Use to handle an unexpected error in the application. The error should implement
+     * the specified interface. The method will add a new [ServiceMessage] to the
+     * specified [ServiceContext].
+     * @param {?} error An unexpected application error that implements the [Error] interface.
+     *
+     * interface Error {
+     *  name: string;
+     *  message: string;
+     *  stack?: string;
+     * }
+     * @return {?}
+     */
     ServiceBase.prototype.handleUnexpectedError = /**
-         * Use to handle an unexpected error in the application. The error should implement
-         * the specified interface. The method will add a new [ServiceMessage] to the
-         * specified [ServiceContext].
-         * @param error An unexpected application error that implements the [Error] interface.
-         *
-         * interface Error {
-         *  name: string;
-         *  message: string;
-         *  stack?: string;
-         * }
-         */
+     * Use to handle an unexpected error in the application. The error should implement
+     * the specified interface. The method will add a new [ServiceMessage] to the
+     * specified [ServiceContext].
+     * @param {?} error An unexpected application error that implements the [Error] interface.
+     *
+     * interface Error {
+     *  name: string;
+     *  message: string;
+     *  stack?: string;
+     * }
+     * @return {?}
+     */
     function (error) {
-        var message = new ServiceMessage(error.name, error.message)
+        var /** @type {?} */ message = new ServiceMessage(error.name, error.message)
             .WithDisplayToUser(true)
             .WithMessageType(MessageType.Error)
             .WithSource(this.serviceName);
-        var logItem = message.toString() + "; " + error.stack;
+        var /** @type {?} */ logItem = message.toString() + "; " + error.stack;
         this.loggingService.log(this.serviceName, Severity.Error, logItem);
         this.serviceContext.addMessage(message);
     };
@@ -83,39 +97,57 @@ ServiceBase = (function () {
      * @param requestOptions
      */
     /**
-         * Use this method to handle an error from the OAuth Provider API.
-         * @param error
-         * @param requestOptions
-         */
+     * Use this method to handle an error from the OAuth Provider API.
+     * @param {?} error
+     * @param {?} requestOptions
+     * @return {?}
+     */
     ServiceBase.prototype.handleOAuthError = /**
-         * Use this method to handle an error from the OAuth Provider API.
-         * @param error
-         * @param requestOptions
-         */
+     * Use this method to handle an error from the OAuth Provider API.
+     * @param {?} error
+     * @param {?} requestOptions
+     * @return {?}
+     */
     function (error, requestOptions) {
-        var message = error.toString() + " " + requestOptions.url + ", " + JSON.stringify(requestOptions.body);
+        var /** @type {?} */ message = error.toString() + " " + requestOptions.url + ", " + JSON.stringify(requestOptions.body);
         this.loggingService.log(this.serviceName, Severity.Error, message);
         if (error && error._body) {
             try {
-                var response_1 = this.createErrorResponse("Unable to validate credentials.");
-                var subject_1 = new BehaviorSubject(response_1);
+                var /** @type {?} */ response_1 = this.createErrorResponse("Unable to validate credentials.");
+                var /** @type {?} */ subject_1 = new BehaviorSubject(response_1);
                 return subject_1.asObservable();
             }
-            catch (e) {
+            catch (/** @type {?} */ e) {
                 this.loggingService.log(this.serviceName, Severity.Error, e.toString());
             }
         }
         // default return behavior;
-        var response = this.createErrorResponse("Unable to validate credentials.");
-        var subject = new BehaviorSubject(response);
+        var /** @type {?} */ response = this.createErrorResponse("Unable to validate credentials.");
+        var /** @type {?} */ subject = new BehaviorSubject(response);
         return subject.asObservable();
     };
-    ServiceBase.prototype.createErrorResponse = function (message) {
-        var response = new ErrorResponse();
+    /**
+     * @param {?} message
+     * @return {?}
+     */
+    ServiceBase.prototype.createErrorResponse = /**
+     * @param {?} message
+     * @return {?}
+     */
+    function (message) {
+        var /** @type {?} */ response = new ErrorResponse();
         response.Message = message;
         return response;
     };
-    ServiceBase.prototype.finishRequest = function (sourceName) {
+    /**
+     * @param {?} sourceName
+     * @return {?}
+     */
+    ServiceBase.prototype.finishRequest = /**
+     * @param {?} sourceName
+     * @return {?}
+     */
+    function (sourceName) {
         var _this = this;
         this.loggingService.log(this.serviceName, Severity.Information, "Request for [" + sourceName + "] by " + this.serviceName + " is complete.");
         if (this.serviceContext.hasErrors()) {
@@ -133,4 +165,21 @@ ServiceBase = (function () {
  * instance.
  */
 export { ServiceBase };
+function ServiceBase_tsickle_Closure_declarations() {
+    /** @type {?} */
+    ServiceBase.prototype.serviceInitDateTime;
+    /**
+     * Use this public property to set/retrieve the user's
+     * security token. Most of the web api calls will require an
+     * authorization token for the authenticated user.
+     * @type {?}
+     */
+    ServiceBase.prototype.accessToken;
+    /** @type {?} */
+    ServiceBase.prototype.serviceName;
+    /** @type {?} */
+    ServiceBase.prototype.serviceContext;
+    /** @type {?} */
+    ServiceBase.prototype.loggingService;
+}
 //# sourceMappingURL=service-base.service.js.map
