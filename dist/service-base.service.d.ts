@@ -1,6 +1,6 @@
 import { RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/observable';
-import { LoggingService } from 'buildmotion-logging';
+import { LoggingService } from '@buildmotion/logging';
 import { ServiceContext } from 'angular-rules-engine';
 import { ErrorResponse } from './models/error-response.model';
 import { OAuthErrorResponse } from './models/oauth-error-response.model';

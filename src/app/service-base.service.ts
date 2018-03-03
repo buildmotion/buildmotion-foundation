@@ -2,11 +2,11 @@ import { RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/observable';
 import { BehaviorSubject } from 'rxjs';
 
-import { LoggingService } from 'buildmotion-logging';
+import { LoggingService } from '@buildmotion/logging';
 import { MessageType } from 'angular-rules-engine';
 import { ServiceContext } from 'angular-rules-engine';
 import { ServiceMessage } from 'angular-rules-engine';
-import { Severity } from 'buildmotion-logging';
+import { Severity } from '@buildmotion/logging';
 import { ErrorResponse } from './models/error-response.model';
 import { ServiceError } from './models/service-error.model';
 import { OAuthErrorResponse } from './models/oauth-error-response.model';

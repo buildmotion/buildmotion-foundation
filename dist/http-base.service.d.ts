@@ -1,6 +1,6 @@
 import { Headers, Http, RequestMethod, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/observable';
-import { LoggingService } from 'buildmotion-logging/logging.service';
+import { LoggingService } from '@buildmotion/logging/';
 import { ErrorResponse } from './models/error-response.model';
 /**
  * Use to create and execute HTTP service requests.

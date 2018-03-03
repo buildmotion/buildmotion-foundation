@@ -14,11 +14,21 @@
         "noImplicitAny": true, /* true to support Angular 4.0 */
         "outDir": "dist",
         "paths": {
-            "angular-rules-engine": ["node_modules/angular-rules-engine/*"],
-            "angular-actions": ["node_modules/angular-actions/*"],
-            "@angular/http": ["node_modules/@angular/http/*"],
-            "rxjs/*": ["node_modules/rxjs/*"],
-            "buildmotion-logging": ["node_modules/buildmotion-logging/*"]
+            "angular-rules-engine": [
+                "node_modules/angular-rules-engine/*"
+            ],
+            "angular-actions": [
+                "node_modules/angular-actions/*"
+            ],
+            "@angular/http": [
+                "node_modules/@angular/http/*"
+            ],
+            "rxjs/*": [
+                "node_modules/rxjs/*"
+            ],
+            "@buildmotion/logging": [
+                "node_modules/@buildmotion/logging/*"
+            ]
         },
         "rootDir": "src/app", /* pointing to [src/app] to allow for angular-cli */
         "skipLibCheck": true,
@@ -31,8 +41,10 @@
         "./src/app/index.ts"
     ],
     "angularCompilerOptions": {
+        "annotateForClosureCompiler": true,
+        "strictMetadataEmit": true,
         "skipTemplateCodegen": true,
-		"strictMetadataEmit": true,
-		"genDir": "aot-dist"
+        "flatModuleOutFile": "buildmotion-foundation.js",
+        "flatModuleId": "buildmotion-foundation"
     }
 }

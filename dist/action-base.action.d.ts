@@ -4,7 +4,7 @@ import { ValidationContext } from 'angular-rules-engine';
 import { ServiceContext } from 'angular-rules-engine';
 import { ActionResult } from 'angular-actions';
 import { RuleResult } from 'angular-rules-engine';
-import { LoggingService } from 'buildmotion-logging';
+import { LoggingService } from '@buildmotion/logging';
 import { HttpBaseService } from './http-base.service';
 /**
  * This is the application's base Action class that provides implementation of pipeline methods - pre/post

@@ -1,4 +1,4 @@
-import { LoggingService } from 'buildmotion-logging';
+import { LoggingService } from '@buildmotion/logging';
 import { ServiceContext } from 'angular-rules-engine';
 /**
  * Use the business provider base class to access common elements of the business provider.
