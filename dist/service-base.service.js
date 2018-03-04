@@ -92,6 +92,60 @@ ServiceBase = (function () {
         this.serviceContext.addMessage(message);
     };
     /**
+     * @param {?} error
+     * @return {?}
+     */
+    ServiceBase.prototype.handleError = /**
+     * @param {?} error
+     * @return {?}
+     */
+    function (error) {
+        var _this = this;
+        var /** @type {?} */ message = new ServiceMessage(error.name, error.message)
+            .WithDisplayToUser(true)
+            .WithMessageType(MessageType.Error)
+            .WithSource(this.serviceName);
+        this.loggingService.log(this.serviceName, Severity.Error, message.toString());
+        this.serviceContext.Messages.forEach(function (e) {
+            if (e.MessageType === MessageType.Error && e.DisplayToUser) {
+                _this.loggingService.log(_this.serviceName, Severity.Error, e.toString());
+            }
+        });
+    };
+    /**
+        * Use to handle HTTP errors when calling web api(s).
+        */
+    /**
+     * Use to handle HTTP errors when calling web api(s).
+     * @param {?} error
+     * @param {?} requestOptions
+     * @return {?}
+     */
+    ServiceBase.prototype.handleHttpError = /**
+     * Use to handle HTTP errors when calling web api(s).
+     * @param {?} error
+     * @param {?} requestOptions
+     * @return {?}
+     */
+    function (error, requestOptions) {
+        var /** @type {?} */ message = error.toString() + " " + requestOptions.url + ", " + JSON.stringify(requestOptions.body);
+        this.loggingService.log(this.serviceName, Severity.Error, message);
+        if (error && error._body) {
+            try {
+                var /** @type {?} */ response_1 = error.json();
+                var /** @type {?} */ subject_1 = new BehaviorSubject(response_1);
+                return subject_1.asObservable();
+            }
+            catch (/** @type {?} */ error) {
+                this.loggingService.log(this.serviceName, Severity.Error, error.toString());
+            }
+        }
+        // default return behavior;
+        var /** @type {?} */ response = this.createErrorResponse('Unexpected error while processing response.');
+        var /** @type {?} */ subject = new BehaviorSubject(response);
+        return subject.asObservable();
+    };
+    /**
      * Use this method to handle an error from the OAuth Provider API.
      * @param error
      * @param requestOptions
@@ -113,9 +167,9 @@ ServiceBase = (function () {
         this.loggingService.log(this.serviceName, Severity.Error, message);
         if (error && error._body) {
             try {
-                var /** @type {?} */ response_1 = this.createErrorResponse("Unable to validate credentials.");
-                var /** @type {?} */ subject_1 = new BehaviorSubject(response_1);
-                return subject_1.asObservable();
+                var /** @type {?} */ response_2 = this.createErrorResponse("Unable to validate credentials.");
+                var /** @type {?} */ subject_2 = new BehaviorSubject(response_2);
+                return subject_2.asObservable();
             }
             catch (/** @type {?} */ e) {
                 this.loggingService.log(this.serviceName, Severity.Error, e.toString());
@@ -127,11 +181,17 @@ ServiceBase = (function () {
         return subject.asObservable();
     };
     /**
-     * @param {?} message
+     * Use to create a new [ErrorResponse] with the specified message.
+     * @param message The message for the specified [ErrorResponse].
+     */
+    /**
+     * Use to create a new [ErrorResponse] with the specified message.
+     * @param {?} message The message for the specified [ErrorResponse].
      * @return {?}
      */
     ServiceBase.prototype.createErrorResponse = /**
-     * @param {?} message
+     * Use to create a new [ErrorResponse] with the specified message.
+     * @param {?} message The message for the specified [ErrorResponse].
      * @return {?}
      */
     function (message) {
@@ -140,10 +200,16 @@ ServiceBase = (function () {
         return response;
     };
     /**
+     * Use a generic method to finish service requests that return [Observables].
+     * @param sourceName
+     */
+    /**
+     * Use a generic method to finish service requests that return [Observables].
      * @param {?} sourceName
      * @return {?}
      */
     ServiceBase.prototype.finishRequest = /**
+     * Use a generic method to finish service requests that return [Observables].
      * @param {?} sourceName
      * @return {?}
      */
@@ -155,6 +221,36 @@ ServiceBase = (function () {
             this.serviceContext.Messages.filter(function (f) { return f.MessageType === MessageType.Error && f.DisplayToUser; })
                 .forEach(function (e) { return _this.loggingService.log(_this.serviceName, Severity.Error, e.toString()); });
         }
+    };
+    /**
+     * Use to reset the service context when you want to clear messages from the [ServiceContext]. If you want to
+     * append messages from subsequent service calls, do not use this method.
+     */
+    /**
+     * Use to reset the service context when you want to clear messages from the [ServiceContext]. If you want to
+     * append messages from subsequent service calls, do not use this method.
+     * @return {?}
+     */
+    ServiceBase.prototype.resetServiceContext = /**
+     * Use to reset the service context when you want to clear messages from the [ServiceContext]. If you want to
+     * append messages from subsequent service calls, do not use this method.
+     * @return {?}
+     */
+    function () {
+        this.loggingService.log(this.serviceName, Severity.Information, "Preparing to reset the Messages of the current [ServiceContext].");
+        if (this.serviceContext && this.serviceContext.Messages) {
+            if (this.serviceContext.Messages.length > 0) {
+                this.loggingService.log(this.serviceName, Severity.Information, "Resetting the Messages of the current [ServiceContext].");
+                this.serviceContext.Messages = new Array();
+            }
+            else {
+                this.loggingService.log(this.serviceName, Severity.Information, "The current [ServiceContext] does not contain any [Messages].");
+            }
+        }
+        else {
+            this.loggingService.log(this.serviceName, Severity.Warning, "The current [ServiceContext] is not valid.");
+        }
+        this.loggingService.log(this.serviceName, Severity.Information, "Finished  processing request to [reset] the Messages of the current [ServiceContext].");
     };
     return ServiceBase;
 }());

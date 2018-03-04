@@ -36,12 +36,37 @@ export declare class ServiceBase {
     * }
     */
     handleUnexpectedError(error: Error): void;
+    handleError(error: {
+        name: string;
+        message: string | undefined;
+    }): void;
+    /**
+        * Use to handle HTTP errors when calling web api(s).
+        */
+    handleHttpError(error: {
+        toString: () => void;
+        _body: any;
+        json: () => ErrorResponse;
+    }, requestOptions: RequestOptions): Observable<Response>;
     /**
      * Use this method to handle an error from the OAuth Provider API.
      * @param error
      * @param requestOptions
      */
     handleOAuthError(error: OAuthErrorResponse, requestOptions: RequestOptions): Observable<Response>;
+    /**
+     * Use to create a new [ErrorResponse] with the specified message.
+     * @param message The message for the specified [ErrorResponse].
+     */
     createErrorResponse(message: string): ErrorResponse;
+    /**
+     * Use a generic method to finish service requests that return [Observables].
+     * @param sourceName
+     */
     finishRequest(sourceName: string): void;
+    /**
+     * Use to reset the service context when you want to clear messages from the [ServiceContext]. If you want to
+     * append messages from subsequent service calls, do not use this method.
+     */
+    resetServiceContext(): void;
 }

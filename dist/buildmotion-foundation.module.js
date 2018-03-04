@@ -4,15 +4,13 @@
  */
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BuildMotionLoggingModule } from "@buildmotion/logging";
 var BuildMotionFoundationModule = (function () {
     function BuildMotionFoundationModule() {
     }
     BuildMotionFoundationModule.decorators = [
         { type: NgModule, args: [{
                     imports: [
-                        CommonModule,
-                        BuildMotionLoggingModule
+                        CommonModule
                     ],
                     declarations: []
                 },] },
