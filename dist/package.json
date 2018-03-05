@@ -1,6 +1,6 @@
 {
   "name": "@buildmotion/foundation",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "description": "An Angular custom module that contains foundation elements for buildmotion Angular applications. Basically, the framework for buildmotion NG.",
   "main": "index.js",
   "module": "./buildmotion-foundation.js",
@@ -36,16 +36,16 @@
   "license": "MIT",
   "peerDependencies": {
     "@angular/http": "^5.1.3",
+    "@buildmotion/logging": "^3.1.2",
     "angular-actions": "^2.0.0",
     "angular-rules-engine": "^2.2.0",
-    "@buildmotion/logging": "^3.1.0",
     "rxjs": "^5.5.0"
   },
   "dependencies": {
     "@angular/http": "^5.1.3",
+    "@buildmotion/logging": "^3.1.2",
     "angular-actions": "^2.0.0",
     "angular-rules-engine": "^2.2.0",
-    "@buildmotion/logging": "^3.1.0",
     "rxjs": "^5.5.0"
   },
   "devDependencies": {
