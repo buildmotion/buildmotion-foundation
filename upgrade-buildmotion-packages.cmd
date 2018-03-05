@@ -1,2 +1,2 @@
 REM use to upgrade buildmotion packages...yum.
-npm install -P angular-actions@latest angular-rules-engine@latest buildmotion-logging@latest
+npm install angular-actions@latest angular-rules-engine@latest buildmotion-logging@latest --save
