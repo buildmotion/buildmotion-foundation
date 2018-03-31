@@ -3,15 +3,12 @@
  * @suppress {checkTypes} checked by tsc
  */
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 var BuildMotionFoundationModule = (function () {
     function BuildMotionFoundationModule() {
     }
     BuildMotionFoundationModule.decorators = [
         { type: NgModule, args: [{
-                    imports: [
-                        CommonModule
-                    ],
+                    imports: [],
                     declarations: []
                 },] },
     ];
