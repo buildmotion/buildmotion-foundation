@@ -3,7 +3,8 @@
   "version": "3.1.4",
   "description": "An Angular custom module that contains foundation elements for buildmotion Angular applications. Basically, the framework for buildmotion NG.",
   "main": "index.js",
-  "module": "./buildmotion-foundation.js",
+  "module": "buildmotion-foundation.js",
+  "typings": "buildmotion-foundation.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "transpile": "ngc",
